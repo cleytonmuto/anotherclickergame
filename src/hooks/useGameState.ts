@@ -78,12 +78,71 @@ const calculateClickValue = (upgrades: Upgrade[]): number => {
   return clickValue;
 };
 
+// Merge saved upgrades with initial upgrades to ensure all upgrades are available
+const mergeUpgrades = (savedUpgrades: Upgrade[] | undefined, initialUpgrades: Upgrade[]): Upgrade[] => {
+  if (!savedUpgrades || savedUpgrades.length === 0) {
+    return initialUpgrades;
+  }
+
+  // Create a map of saved upgrades by ID for quick lookup
+  const savedUpgradesMap = new Map(savedUpgrades.map(u => [u.id, u]));
+  
+  // Start with initial upgrades and update with saved state if it exists
+  const mergedUpgrades = initialUpgrades.map(initialUpgrade => {
+    const savedUpgrade = savedUpgradesMap.get(initialUpgrade.id);
+    if (savedUpgrade) {
+      // Use saved upgrade but preserve initial upgrade structure in case it was updated
+      return {
+        ...initialUpgrade,
+        purchased: savedUpgrade.purchased,
+        // Keep saved cost if it exists, otherwise use initial
+        cost: savedUpgrade.cost !== undefined ? savedUpgrade.cost : initialUpgrade.cost,
+      };
+    }
+    // New upgrade not in saved state, use initial
+    return initialUpgrade;
+  });
+  
+  return mergedUpgrades;
+};
+
+// Merge saved businesses with initial businesses
+const mergeBusinesses = (savedBusinesses: Business[] | undefined, initialBusinesses: Business[]): Business[] => {
+  if (!savedBusinesses || savedBusinesses.length === 0) {
+    return initialBusinesses;
+  }
+
+  const savedBusinessesMap = new Map(savedBusinesses.map(b => [b.id, b]));
+  
+  return initialBusinesses.map(initialBusiness => {
+    const savedBusiness = savedBusinessesMap.get(initialBusiness.id);
+    if (savedBusiness) {
+      return {
+        ...initialBusiness,
+        owned: savedBusiness.owned,
+        managerHired: savedBusiness.managerHired,
+        level: savedBusiness.level || initialBusiness.level,
+      };
+    }
+    return initialBusiness;
+  });
+};
+
 export const useGameState = () => {
   const [gameState, setGameState] = useState<GameState>(() => {
     const saved = localStorage.getItem('gameState');
     if (saved) {
       try {
-        return JSON.parse(saved);
+        const savedState = JSON.parse(saved);
+        // Merge saved state with initial data to ensure all upgrades/businesses are available
+        return {
+          money: savedState.money || 0,
+          totalMoneyEarned: savedState.totalMoneyEarned || 0,
+          businesses: mergeBusinesses(savedState.businesses, initialBusinesses),
+          upgrades: mergeUpgrades(savedState.upgrades, initialUpgrades),
+          lastSaveTime: savedState.lastSaveTime || Date.now(),
+          clicks: savedState.clicks || 0,
+        };
       } catch {
         // If parsing fails, use initial state
       }
@@ -220,11 +279,17 @@ export const useGameState = () => {
   }, []);
 
   const loadGameState = useCallback((state: GameState) => {
-    setGameState({
-      ...state,
-      lastSaveTime: Date.now(),
-    });
-    localStorage.setItem('gameState', JSON.stringify(state));
+    // Merge loaded state with initial data to ensure all upgrades/businesses are available
+    const mergedState = {
+      money: state.money || 0,
+      totalMoneyEarned: state.totalMoneyEarned || 0,
+      businesses: mergeBusinesses(state.businesses, initialBusinesses),
+      upgrades: mergeUpgrades(state.upgrades, initialUpgrades),
+      lastSaveTime: state.lastSaveTime || Date.now(),
+      clicks: state.clicks || 0,
+    };
+    setGameState(mergedState);
+    localStorage.setItem('gameState', JSON.stringify(mergedState));
   }, []);
 
   return {
