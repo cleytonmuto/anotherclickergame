@@ -1,0 +1,35 @@
+.game-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 20px;
+}
+
+.game-main {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 25px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.game-left {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.game-right {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1024px) {
+  .game-main {
+    grid-template-columns: 1fr;
+  }
+
+  .game-right {
+    order: -1;
+  }
+}
+
