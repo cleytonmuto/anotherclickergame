@@ -4,6 +4,7 @@ export const initialBusinesses: Business[] = [
   {
     id: 'lemonade',
     name: 'Lemonade Stand',
+    icon: '🍋',
     baseCost: 4,
     baseIncome: 1,
     level: 1,
@@ -14,6 +15,7 @@ export const initialBusinesses: Business[] = [
   {
     id: 'newspaper',
     name: 'Newspaper Delivery',
+    icon: '📰',
     baseCost: 60,
     baseIncome: 8,
     level: 1,
@@ -24,6 +26,7 @@ export const initialBusinesses: Business[] = [
   {
     id: 'carwash',
     name: 'Car Wash',
+    icon: '🚗',
     baseCost: 720,
     baseIncome: 47,
     level: 1,
@@ -34,6 +37,7 @@ export const initialBusinesses: Business[] = [
   {
     id: 'pizza',
     name: 'Pizza Delivery',
+    icon: '🍕',
     baseCost: 8640,
     baseIncome: 260,
     level: 1,
@@ -44,6 +48,7 @@ export const initialBusinesses: Business[] = [
   {
     id: 'donut',
     name: 'Donut Shop',
+    icon: '🍩',
     baseCost: 103680,
     baseIncome: 1400,
     level: 1,
@@ -54,6 +59,7 @@ export const initialBusinesses: Business[] = [
   {
     id: 'shrimp',
     name: 'Shrimp Boat',
+    icon: '🦐',
     baseCost: 1244160,
     baseIncome: 7800,
     level: 1,
@@ -64,6 +70,7 @@ export const initialBusinesses: Business[] = [
   {
     id: 'hockey',
     name: 'Hockey Team',
+    icon: '🏒',
     baseCost: 14929920,
     baseIncome: 44000,
     level: 1,
@@ -74,6 +81,7 @@ export const initialBusinesses: Business[] = [
   {
     id: 'movie',
     name: 'Movie Studio',
+    icon: '🎬',
     baseCost: 179159040,
     baseIncome: 260000,
     level: 1,
@@ -84,6 +92,7 @@ export const initialBusinesses: Business[] = [
   {
     id: 'bank',
     name: 'Bank',
+    icon: '🏦',
     baseCost: 2149908480,
     baseIncome: 1600000,
     level: 1,
@@ -94,6 +103,7 @@ export const initialBusinesses: Business[] = [
   {
     id: 'oil',
     name: 'Oil Company',
+    icon: '🛢️',
     baseCost: 25798901760,
     baseIncome: 10000000,
     level: 1,

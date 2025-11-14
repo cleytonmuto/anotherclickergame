@@ -48,7 +48,10 @@ export const BusinessManager = ({
               }`}
             >
               <div className="business-header">
-                <h3 className="business-name">{business.name}</h3>
+                <h3 className="business-name">
+                  <span className="business-icon">{business.icon}</span>
+                  {business.name}
+                </h3>
                 {business.managerHired && (
                   <span className="manager-badge">👔 Manager</span>
                 )}

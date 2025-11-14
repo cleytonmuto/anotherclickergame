@@ -1,6 +1,7 @@
 export interface Business {
   id: string;
   name: string;
+  icon: string;
   baseCost: number;
   baseIncome: number;
   level: number;

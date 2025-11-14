@@ -117,10 +117,11 @@ const mergeBusinesses = (savedBusinesses: Business[] | undefined, initialBusines
   return initialBusinesses.map(initialBusiness => {
     const savedBusiness = savedBusinessesMap.get(initialBusiness.id);
     if (savedBusiness) {
+      // Merge: use initial business structure (includes icon) but preserve saved game state
       return {
         ...initialBusiness,
-        owned: savedBusiness.owned,
-        managerHired: savedBusiness.managerHired,
+        owned: savedBusiness.owned || 0,
+        managerHired: savedBusiness.managerHired || false,
         level: savedBusiness.level || initialBusiness.level,
       };
     }

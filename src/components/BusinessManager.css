@@ -47,6 +47,41 @@
   font-size: 20px;
   color: #333;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.business-icon {
+  font-size: 28px;
+  line-height: 1;
+  display: inline-block;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.business-card:hover .business-icon {
+  transform: scale(1.15) rotate(5deg);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.business-card.affordable .business-icon {
+  filter: drop-shadow(0 2px 6px rgba(102, 126, 234, 0.3));
+}
+
+.business-card.affordable:hover .business-icon {
+  transform: scale(1.2) rotate(8deg);
+  filter: drop-shadow(0 4px 10px rgba(102, 126, 234, 0.5));
+  animation: pulse-glow 1s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    filter: drop-shadow(0 4px 10px rgba(102, 126, 234, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 6px 15px rgba(102, 126, 234, 0.7));
+  }
 }
 
 .manager-badge {
