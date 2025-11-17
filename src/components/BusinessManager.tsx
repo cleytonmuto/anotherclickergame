@@ -1,4 +1,4 @@
-import { Business, Upgrade } from '../types/game';
+import type { Business, Upgrade } from '../types/game';
 import './BusinessManager.css';
 
 interface BusinessManagerProps {

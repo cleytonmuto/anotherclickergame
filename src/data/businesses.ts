@@ -1,4 +1,4 @@
-import { Business } from '../types/game';
+import type { Business } from '../types/game';
 
 export const initialBusinesses: Business[] = [
   {

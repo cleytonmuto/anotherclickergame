@@ -6,7 +6,7 @@ import {
   serverTimestamp,
 } from 'firebase/firestore';
 import { db } from '../config/firebase';
-import { GameState } from '../types/game';
+import type { GameState } from '../types/game';
 
 export const saveGameToFirebase = async (userId: string, gameState: GameState) => {
   try {

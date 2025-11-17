@@ -19,7 +19,6 @@ export const Game = () => {
     calculateBusinessIncome,
     calculateBusinessIncomePerSecond,
     calculateClickValue,
-    saveGameState,
     loadGameState,
   } = useGameState();
 

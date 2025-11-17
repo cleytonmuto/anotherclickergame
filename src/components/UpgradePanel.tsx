@@ -1,4 +1,4 @@
-import { Upgrade } from '../types/game';
+import type { Upgrade } from '../types/game';
 import './UpgradePanel.css';
 
 interface UpgradePanelProps {

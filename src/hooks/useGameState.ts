@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { GameState, Business, Upgrade } from '../types/game';
+import type { GameState, Business, Upgrade } from '../types/game';
 import { initialBusinesses } from '../data/businesses';
 import { initialUpgrades } from '../data/upgrades';
 
